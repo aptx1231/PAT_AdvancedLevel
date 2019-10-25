@@ -56,13 +56,8 @@ int main() {
 		a[i].id = i;
 		if (a[i].arrivetime <= 17*60*60) {  //只考虑17:00之前到达的 
 			que.push(a[i]);
-		}
-	}
-//	while (!que.empty()) {
-//		node t = que.top();
-//		que.pop();
-//		cout << t.arrivetime << " " << t.servicetime << endl;
-//	}	 
+		}  //que中所有顾客都要得到服务 
+	}	 
 	int status[105] = {0};
 	int curTime[105] = {0};
 	queue<node> qlist;
@@ -110,10 +105,11 @@ int main() {
 			}
 		}
 	}
+	//17点前到达的所有顾客都要得到服务 哪怕他的开始服务时间超过了17点 
 	long long total = 0;
 	int cnt = 0;
 	for (int i=0;i<n;i++) {
-		if (a[i].startTime >= a[i].arrivetime) {  //>= 记录有意义的顾客 
+		if (a[i].arrivetime <= 17*60*60) {
 			total += (a[i].startTime - a[i].arrivetime);
 			cnt++;
 		}
